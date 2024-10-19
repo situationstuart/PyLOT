@@ -1,2 +1,5 @@
-print("hello world")
-var = 1
+from gui.logbook import LogbookPage
+
+if __name__ == "__main__":
+    app = LogbookPage()
+    app.mainloop()

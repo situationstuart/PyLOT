@@ -8,19 +8,20 @@ class App(ctk.CTk):
     # APP SETTINGS
     APP_NAME = "PyLOT: Python Logbook for Organised Tracking"
     SCR_WIDTH, SCR_HEIGHT = screen_utils.get_screen_dimensions()
+    TEST_WIDTH, TEST_HEIGHT = 600, 400
     PAGES = [
-        LogbookPage,
-        HomePage
+        HomePage,
+        LogbookPage
     ]
     INIT_PAGE = 1
 
     def __init__(self):
         super().__init__()
 
-        self.geometry(f"{self.SCR_WIDTH}x{self.SCR_HEIGHT}")
+        self.geometry(f"{self.TEST_WIDTH}x{self.TEST_HEIGHT}+0+0")
+        self.after(50, lambda: self.state("zoomed"))
+
         self.title(self.APP_NAME)
-        self.wm_attributes("-fullscreen", True)
-        self.state("normal")
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("dark-blue")
 
@@ -36,13 +37,13 @@ class App(ctk.CTk):
             self.frames[i] = frame
             frame.grid(row=0, column=0, sticky="nsew")
             i += 1
-        
+
         self.show_page(self.INIT_PAGE)
 
     # Show a certain page, from 1 to upwards
     def show_page(self, page_number : int):
         self.frames.get(page_number).tkraise()
-    
+
     # Get a certain page, from 1 to upwards
     def get_page(self, page_number : int):
         return self.frames.get(page_number)

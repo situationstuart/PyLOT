@@ -6,8 +6,6 @@ class App(ctk.CTk):
 
     # APP SETTINGS
     APP_NAME = "PyLOT: Python Logbook for Organised Tracking"
-    # SCR_WIDTH, SCR_HEIGHT = map(lambda x: x/1.5, screen_utils.get_screen_dimensions())
-    TEST_WIDTH, TEST_HEIGHT = 600, 400
     PAGES = [
         HomePage,
         LogbookPage
@@ -20,8 +18,9 @@ class App(ctk.CTk):
         SCR_WIDTH = int(round(self.winfo_screenwidth() / 1.5, 0))
         SCR_HEIGHT = int(round(self.winfo_screenheight() / 1.5, 0))
         self.geometry(f"{SCR_WIDTH}x{SCR_HEIGHT}")
-        print(SCR_WIDTH, SCR_HEIGHT)
+        self.minsize(960, 540)
         self.after(50, lambda: self.state("zoomed"))
+        
 
         self.title(self.APP_NAME)
         ctk.set_appearance_mode("dark")

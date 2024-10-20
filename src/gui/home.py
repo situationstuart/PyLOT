@@ -3,7 +3,6 @@
 
 
 import customtkinter as ctk
-from utils import screen_utils
 
 class HomePage(ctk.CTkFrame):
     def __init__(self, parent, app):

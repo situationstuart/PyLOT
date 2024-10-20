@@ -3,18 +3,13 @@
 
 
 import customtkinter as ctk
+from utils.screen_utils import generate_frame_header
 
 class HomePage(ctk.CTkFrame):
     def __init__(self, parent, app):
         ctk.CTkFrame.__init__(self, parent)
         self.app = app
 
-        # Label for title
-        # https://github.com/TomSchimansky/CustomTkinter/wiki/CTkLabel
-        self.labelTitle1 = ctk.CTkLabel(master=self, text="Example Page 1")
-        self.labelTitle1.place(relx=0.5, rely=0.07, anchor=ctk.CENTER)
+        generate_frame_header(self)
 
-        # Label for description
-        # https://github.com/TomSchimansky/CustomTkinter/wiki/CTkLabel
-        self.labelTitleDescription = ctk.CTkLabel(master=self, text="What's up?")
-        self.labelTitleDescription.place(relx=0.5, rely=0.15, anchor=ctk.CENTER)
+        print(self.btn_menu.cget("image"))

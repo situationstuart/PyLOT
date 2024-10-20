@@ -3,8 +3,13 @@ from PIL import Image
 import os
 
 def load_icon(image_name: str): # -> Image
-    """
-    Loads an image from the assets/icons directory.
+    """Loads a given image from the assets/icons directory
+
+    Args:
+        image_name (str): filename of the image to load
+
+    Returns:
+        Image: returns the loaded image
     """
     image_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
                               "assets", "icons", image_name)
@@ -15,11 +20,13 @@ def load_icon(image_name: str): # -> Image
         print(f"Error: Unable to load image {image_name}")
         return None
     
-def generate_frame_header(self: ctk.CTkFrame): # -> None
-    """
-    Generates the header frame for the application.
-    """
+def generate_frame_header(self: ctk.CTkFrame, titleString: str): # -> None
+    """Generates a header for a frame with a title and buttons for menu, help, and settings
 
+    Args:
+        self (ctk.CTkFrame): Frame to generate the header for
+        titleString (str): Title to display in the header
+    """
     self.menu_image = ctk.CTkImage(light_image=load_icon("ico_menu_light.png"),
                                        dark_image=load_icon("ico_menu_dark.png"),
                                        size=(50, 50))
@@ -42,7 +49,7 @@ def generate_frame_header(self: ctk.CTkFrame): # -> None
                                     fg_color="transparent", width=60)
     self.btn_menu.grid(row=0, column=0, sticky="w")
 
-    self.lbl_title = ctk.CTkLabel(self.frm_header, text="PyLOT", font=("", 35),
+    self.lbl_title = ctk.CTkLabel(self.frm_header, text=titleString, font=("", 35),
                                     padx=10, anchor="center")
     self.lbl_title.grid(row=0, column=1, sticky="w")
 

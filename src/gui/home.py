@@ -3,7 +3,7 @@
 
 
 import customtkinter as ctk
-from CTkTable import CTkTable #Source: https://github.com/Akascape/CTkTable
+from CTkTable import CTkTable # Source: https://github.com/Akascape/CTkTable
 from utils.screen_utils import generate_frame_header
 
 tableDataPlaceholder = [
@@ -30,36 +30,74 @@ class HomePage(ctk.CTkFrame):
         # Configure columns for proportional resizing
         self.frm_body.columnconfigure(0, weight=1)  # Left third
         self.frm_body.columnconfigure(1, weight=2)  # Right two-thirds
+        self.frm_body.columnconfigure(2, weight=1)
 
+        # Frame instantiations
         self.frm_recent = ctk.CTkFrame(self.frm_body)
-        self.frm_recent.grid(row=0, column=0, sticky="nsew", padx=10)
+        self.frm_dashboard = ctk.CTkFrame(self.frm_body)
+        self.frm_notifs = ctk.CTkFrame(self.frm_body)
+        self.frm_upcoming = ctk.CTkFrame(self.frm_body)
+        self.frm_map = ctk.CTkFrame(self.frm_body)
 
+        # Frame placements
+        self.frm_recent.grid(row=0, column=0, sticky="nsew", padx=10)
+        self.frm_dashboard.grid(row=0, column=1, columnspan=2, sticky="nsew", padx=10)
+        self.frm_notifs.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
+        self.frm_upcoming.grid(row=1, column=1, sticky="nsew", padx=10, pady=10)
+        self.frm_map.grid(row=1, column=2, sticky="nsew", padx=10, pady=10)
+
+        # frm_recent configuration & elements
         self.lbl_recent_title = ctk.CTkLabel(self.frm_recent, 
                                              text="Recent Logbook Entries", 
                                              font=("", 20),
                                              anchor="center")
-        self.lbl_recent_title.grid(row=0, column=0, sticky="new")
+        self.lbl_recent_title.grid(row=0, column=0, sticky="new", pady=10)
 
         self.tbl_recent = CTkTable(self.frm_recent, row=6, column=5,
                                    values=tableDataPlaceholder,
                                    width=0)
-        self.tbl_recent.grid(row=0, column=0, sticky="nsew")
+        self.tbl_recent.grid(row=1, column=0, sticky="nsew")
 
-        # Configure row and column for tbl_recent to expand
-        self.frm_recent.rowconfigure(0, weight=1)
-        self.frm_recent.columnconfigure(0, weight=1)
+        self.frm_recent.rowconfigure(0, weight=1) # Configure row for tbl_recent to expand
+        self.frm_recent.columnconfigure(0, weight=1) # Configure column for tbl_recent to expand
 
-        self.frm_dashboard = ctk.CTkFrame(self.frm_body)
-        self.frm_dashboard.grid(row=0, column=1, columnspan=2, sticky="nsew", padx=10)
+        # frm_dashboard configuration & elements
+        self.lbl_dashboard_title = ctk.CTkLabel(self.frm_dashboard, 
+                                             text="Dashboard", 
+                                             font=("", 20),
+                                             anchor="center")
+        self.lbl_dashboard_title.grid(row=0, column=0, sticky="new")
 
-        self.frm_notifs = ctk.CTkFrame(self.frm_body)
-        self.frm_notifs.grid(row=1, column=0, sticky="ew", padx=10)
+        self.frm_dashboard.rowconfigure(0, weight=1)
+        self.frm_dashboard.columnconfigure(0, weight=1)
 
-        self.frm_upcoming = ctk.CTkFrame(self.frm_body)
-        self.frm_upcoming.grid(row=1, column=1, sticky="ew", padx=10)
 
-        self.frm_map = ctk.CTkFrame(self.frm_body)
-        self.frm_map.grid(row=1, column=2, sticky="ew", padx=10)
+        # frm_notifs configuration & elements
+        self.lbl_notifs_title = ctk.CTkLabel(self.frm_notifs, 
+                                             text="Notifications", 
+                                             font=("", 20),
+                                             anchor="center")
+        self.lbl_notifs_title.grid(row=0, column=0, sticky="new")
 
-        # Adjust column configurations to match the actual columns being used
-        self.frm_body.columnconfigure(2, weight=1)
+        self.frm_notifs.rowconfigure(0, weight=1)
+        self.frm_notifs.columnconfigure(0, weight=1)
+
+        # frm_upcoming configuration & elements
+        self.lbl_upcoming_title = ctk.CTkLabel(self.frm_upcoming, 
+                                             text="Upcoming Flights", 
+                                             font=("", 20),
+                                             anchor="center")
+        self.lbl_upcoming_title.grid(row=0, column=0, sticky="new")
+
+        self.frm_upcoming.rowconfigure(0, weight=1)
+        self.frm_upcoming.columnconfigure(0, weight=1)
+
+        # frm_map configuration & elements
+        self.lbl_map_title = ctk.CTkLabel(self.frm_map, 
+                                             text="Map", 
+                                             font=("", 20),
+                                             anchor="center")
+        self.lbl_map_title.grid(row=0, column=0, sticky="new")
+
+        self.frm_map.rowconfigure(0, weight=1)
+        self.frm_map.columnconfigure(0, weight=1)
